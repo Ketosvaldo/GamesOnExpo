@@ -1,6 +1,12 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+    containerButtons: {
+        margintTop: '40%',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -22,9 +28,11 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         marginRight: 10,
         backgroundColor: 'white',
+        borderColor: 'black',
+        borderWidth: 1,
+        borderRadius: 5
     },
     game: {
-        margintTop: '40%',
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
@@ -34,6 +42,10 @@ const styles = StyleSheet.create({
         width: 200,
         textAlign: 'center',
         marginBottom: 10,
+        backgroundColor: 'white',
+        borderWidth: 1,
+        borderRadius: 8,
+        borderColor: 'black',
     },
     piedra: {
         flex:1,
@@ -48,10 +60,15 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     buttons: {
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: 'center',
-        margin:20,
+        borderColor: 'black',
+        borderWidth: 2,
+        borderRadius: 4,
+    },
+    imageBack: {
+        flex: 1,
+        width: '100%',
+        justifyContent:"center",
+        alignItems: "center",
     }
 })
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Button, TextInput, Text } from 'react-native';
+import { View, Button, TextInput, Text, ImageBackground} from 'react-native';
 import List from './List';
 import styles from './styles';
 function mapItems(items){
@@ -61,32 +61,34 @@ function GuessMyNumber(){
         setCount(count + 1);
     }
     return(
-        <View style={styles.game}>
-            <TextInput 
-                style={styles.input}
-                autoFocus
-                placeholder="Guess My Number"
-                onChangeText = {handleOnChange}
-                defaultValue = {number}
-            />
-
-            <Button 
-                title = "Probar"
-                onPress={handleOnPress}
-            />
-
-            {
-                win ?
-                <Text>
-                    Felicidades, los has adivinado en {count} intentos
-                </Text>
-                :
-                <Text>
-                    {message}
-                </Text>
-            }
-            <List data={mapItems(guessList)}/>
-        </View>
+        <ImageBackground source={require('./images/Thinking.png')} resizeMode='cover' style={{width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center'}}>
+             <View style={styles.game}>
+                <TextInput 
+                    style={styles.input}
+                    autoFocus
+                    placeholder="Guess My Number"
+                    onChangeText = {handleOnChange}
+                    defaultValue = {number}
+                />
+                <Button 
+                    title = "Probar"
+                    onPress={handleOnPress}
+                />
+                <View style={styles.text}>
+                {
+                    win ?
+                    <Text>
+                        Felicidades, los has adivinado en {count} intentos
+                    </Text>
+                    :
+                        <Text>
+                        {message}
+                    </Text>
+                }
+                </View>
+                <List data={mapItems(guessList)}/>
+            </View>
+        </ImageBackground>
     )
 }
 

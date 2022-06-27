@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, ImageBackground } from 'react-native';
 import styles from './styles';
 
 function generateRandomNumber(max, min = 1){
@@ -132,44 +132,46 @@ function RPS() {
     }
 
     return (
-        <View style={styles.game}>
+        <ImageBackground source={require('./images/RPS.png')} resizeMode='cover' style={{height: '100%', justifyContent: 'center', alignItems: 'center'}}>
+           <View style={styles.game}>
             {
                 win ?
                     <View>
-                        <Text>Has Ganado :D</Text>
+                        <Text style={styles.text}>Has Ganado :D</Text>
                         <Button 
                             title="¿Volver a jugar?"
                             onPress={Reset}
                         />
                     </View>
                     :
-                    lose ?
-                        <View>
-                            <Text>Has perdido :c</Text>
-                            <Button 
-                                title="¿Volver a jugar?"
-                                onPress={Reset}
+                lose ?
+                    <View>
+                        <Text style={styles.text}>Has perdido :c</Text>
+                        <Button 
+                            title="¿Volver a jugar?"
+                            onPress={Reset}
+                        />
+                    </View>
+                    :<View>
+                        <Button 
+                            title="Piedra"
+                            onPress={Piedra}
+                        />
+                        <Button 
+                            title="Papel"
+                            onPress={Papel}
+                        />
+                        <Button 
+                            title="Tijera"
+                            onPress={Tijera}
                             />
-                        </View>
-                        :<View>
-                            <Button 
-                                title="Piedra"
-                                onPress={Piedra}
-                            />
-                            <Button 
-                                title="Papel"
-                                onPress={Papel}
-                            />
-                            <Button 
-                                title="Tijera"
-                                onPress={Tijera}
-                            />
-                            <Text>Mis puntos: {count}</Text>
-                            <Text>Computadora: {IAcount}</Text>
-                            <Text>{message}</Text>
-                        </View>
-            }
-        </View>
+                        <Text style={styles.text}>Mis puntos: {count}</Text>
+                        <Text style={styles.text}>Computadora: {IAcount}</Text>
+                        <Text style={styles.text}>{message}</Text>
+                    </View>
+                }
+            </View>
+        </ImageBackground>
     );
 }
 
