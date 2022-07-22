@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, ImageBackground, TextInput} from 'react-native';
+import { Text, ImageBackground, TextInput, Button} from 'react-native';
 import CountDown from 'react-native-countdown-component';
 import styles from './styles';
 function generateRandomNumber(max, min = 1){
@@ -16,14 +16,17 @@ function calculateResult(num1, num2, resp){
     }
 }
 
-const rand1 = generateRandomNumber(100);
-const rand2 = generateRandomNumber(100);
+/*const rand1 = generateRandomNumber(100);
+const rand2 = generateRandomNumber(100);*/
 
 function Brained(){
+    const [rand1, setRand1] = useState(generateRandomNumber(100));
+    const [rand2, setRand2] = useState(generateRandomNumber(100));
     const [number, setNumber] = useState('');
     const [message, setMessage] = useState('');
     const [finish, setFinish] = useState(true);
     const [win, setWin] = useState(false);
+
     const handleOnChange = (newNumber) => {
         setNumber(newNumber);
     }
@@ -39,6 +42,15 @@ function Brained(){
             setWin(false);
         }
         setFinish(false);
+    }
+
+    const restartGame = () => {
+        setNumber('');
+        setMessage('');
+        setWin(false);
+        setFinish(true);
+        setRand1(generateRandomNumber(100));
+        setRand2(generateRandomNumber(100));
     }
 
     return(
@@ -67,7 +79,7 @@ function Brained(){
                     onChangeText={handleOnChange}
                     defaultValue={number}
                 />
-                <Text>{message}</Text>
+                <Button title='Probar' onPress={handleOnFinish}/>
             </ImageBackground>
             :
             win ? 
@@ -80,6 +92,7 @@ function Brained(){
                         width: '100%',
                     }}>
                 <Text style={styles.title}>{message}</Text>
+                <Button title='¿Reintentar?' onPress={restartGame}/>
                 </ImageBackground>
 
             :
@@ -93,6 +106,7 @@ function Brained(){
                         width: '100%',
                     }}>
                     <Text style={styles.title}>{message}</Text>
+                    <Button title='¿Reintentar?' onPress={restartGame}/>
                 </ImageBackground>
     );
 }
